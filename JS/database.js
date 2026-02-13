@@ -65,13 +65,14 @@ const DB = {
 
     _cfg: null,
 
-    // Call once on page load — reads config from window.JSONBIN_CONFIG
+    // Call once on page load
     init: function() {
-        if (!window.JSONBIN_CONFIG ||
-            window.JSONBIN_CONFIG.DATA_API_KEY === 'PASTE_YOUR_API_KEY_HERE') {
-            console.warn('[DB] JSONBin not configured yet.');
-        }
-        this._cfg = window.JSONBIN_CONFIG;
+        // Use window.JSONBIN_CONFIG if available, otherwise use hardcoded values
+        this._cfg = window.JSONBIN_CONFIG || {
+            API_KEY:     "$2a$10$8aAU3ZjrF09kvBzqGZCwG.gkJ3qY9uugDrm.9LQ7H6rnTsvqVpU..",
+            MENU_BIN_ID: "698f3d6dae596e708f282537",
+            DATA_BIN_ID: "698f7917ae596e708f2894f6"
+        };
     },
 
     // Read the whole database record
